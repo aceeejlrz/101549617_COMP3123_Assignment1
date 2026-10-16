@@ -64,6 +64,13 @@ const employeeSchema = new mongoose.Schema(
   {
     timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
     versionKey: false,
+    toJSON: {
+      // Keep _id first so every employee response has the same field order.
+      transform(doc, ret) {
+        const { _id, ...rest } = ret;
+        return { _id, ...rest };
+      },
+    },
   }
 );
 
