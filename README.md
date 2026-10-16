@@ -106,8 +106,8 @@ Request flow: **route → (rate limiter) → auth middleware → validation → 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/aceeejlrz/101549617__COMP3123_Assignment1.git
-cd 101549617__COMP3123_Assignment1
+git clone https://github.com/aceeejlrz/101549617_COMP3123_Assignment1.git
+cd 101549617_COMP3123_Assignment1
 ```
 
 ### 2. Install dependencies
