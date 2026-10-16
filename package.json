@@ -1,0 +1,41 @@
+{
+  "name": "comp3123-assignment1",
+  "version": "1.0.0",
+  "description": "COMP 3123 Assignment 1 - Secure RESTful backend API (Node.js, Express, MongoDB) with JWT authentication and per-user employee management",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "seed": "node scripts/seed.js",
+    "token:expired": "node scripts/generate-expired-token.js"
+  },
+  "keywords": [
+    "comp3123",
+    "express",
+    "mongodb",
+    "mongoose",
+    "jwt",
+    "rest-api"
+  ],
+  "author": "aceeejlrz (101549617)",
+  "license": "ISC",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.1",
+    "express-validator": "^7.3.2",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^8.24.5",
+    "winston": "^3.19.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
