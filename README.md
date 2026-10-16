@@ -46,14 +46,14 @@ A secure RESTful backend built with **Node.js, Express and MongoDB (Mongoose)**.
 
 | Area | Technology |
 | --- | --- |
-| Runtime / framework | Node.js (18+), Express 5 |
+| Runtime / framework | Node.js (18.11+), Express 5 |
 | Database | MongoDB, Mongoose 8 (database name: `comp3123_assignment1`) |
 | Authentication | jsonwebtoken (HS256), bcryptjs |
 | Security | helmet, express-rate-limit, express-validator, cors |
 | Configuration | dotenv |
 | Logging | winston |
 | Testing | Postman (collection included), newman (optional CLI runner) |
-| Development | nodemon |
+| Development | Node.js built-in watch mode (`node --watch`) |
 
 ## Project Structure
 
@@ -99,7 +99,7 @@ Request flow: **route → (rate limiter) → auth middleware → validation → 
 
 ### Prerequisites
 
-- Node.js 18 or newer
+- Node.js 18.11 or newer (Node 20 or 22 LTS recommended)
 - MongoDB – either a local MongoDB Community Server or a free MongoDB Atlas cluster
 - Postman (for API testing)
 
@@ -138,7 +138,7 @@ The application always uses the database **`comp3123_assignment1`** (set with Mo
 ### 5. Start the application
 
 ```bash
-npm run dev     # development, restarts on file changes (nodemon)
+npm run dev     # development, restarts on file changes (node --watch)
 npm start       # plain node
 ```
 
