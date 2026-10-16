@@ -10,6 +10,7 @@ const ApiError = require('./utils/ApiError');
 const { apiLimiter } = require('./middleware/rateLimiters');
 const healthRoutes = require('./routes/health.routes');
 const userRoutes = require('./routes/user.routes');
+const employeeRoutes = require('./routes/employee.routes');
 
 const app = express();
 
@@ -49,6 +50,7 @@ app.use('/health', healthRoutes);
 // General rate limit for all API routes (auth routes also have stricter limits).
 app.use('/api', apiLimiter);
 app.use('/api/v1/user', userRoutes);
+app.use('/api/v1/emp', employeeRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
