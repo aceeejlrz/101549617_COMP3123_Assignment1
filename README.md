@@ -23,7 +23,8 @@ A secure RESTful backend built with **Node.js, Express and MongoDB (Mongoose)**.
 12. [Logging](#logging)
 13. [Health Check](#health-check)
 14. [Testing (Postman)](#testing-postman)
-15. [Sample Credentials for Marking](#sample-credentials-for-marking)
+15. [Screenshots](#screenshots)
+16. [Sample Credentials for Marking](#sample-credentials-for-marking)
 
 ---
 
@@ -86,6 +87,8 @@ A secure RESTful backend built with **Node.js, Express and MongoDB (Mongoose)**.
 │   └── generate-expired-token.js# Prints an expired JWT to test 401 handling
 ├── postman/
 │   └── COMP3123_Assignment1.postman_collection.json
+├── screenshots/                 # Testing evidence (Postman, MongoDB Compass, logs)
+├── 101549617_COMP3123_Assignment1_Screenshots.docx  # All screenshots with captions
 ├── logs/                        # Runtime logs (app.log, error.log) – git-ignored; sample.log is committed
 ├── .env.example                 # Safe example configuration
 └── package.json
@@ -640,6 +643,105 @@ npx newman run postman/COMP3123_Assignment1.postman_collection.json
 ```
 
 Latest run: **56 requests, 183 assertions, 0 failures** (the rate-limit request repeats itself until it gets 429).
+
+## Screenshots
+
+All testing evidence is in the [`screenshots/`](screenshots) folder, and also collected in one Word document with a caption for every screenshot: [**101549617_COMP3123_Assignment1_Screenshots.docx**](101549617_COMP3123_Assignment1_Screenshots.docx). The document has a cover page, an evidence index and one screenshot per page.
+
+The screenshots were taken from the running API (`npm start`, local MongoDB, database `comp3123_assignment1`) using Postman and MongoDB Compass.
+
+| Submission checklist item | Screenshots |
+| --- | --- |
+| Postman testing (full collection run, 183/183 tests passed) | 00 |
+| Health check | 01 |
+| Helmet / security headers | 02 |
+| Signup | 03–10 |
+| Login / JWT | 11–14 |
+| JWT errors (missing, malformed, invalid, expired) | 15–18 |
+| Employee CRUD | 19–22, 33, 43 |
+| Validation and error handling | 07–10, 14, 23–32, 44–46 |
+| Per-user visibility and two-user ownership test (403 for cross-user access) | 34–42 |
+| Rate limiting (429 and rate-limit headers) | 47–49 |
+| MongoDB (database, collections, hashed passwords, ownership, relationship, indexes) | 50–55 |
+| Local logging (log file and server console) | 56–57 |
+
+Collection Runner summary:
+
+![Postman Collection Runner: 183 of 183 tests passed](screenshots/00-collection-runner-183-tests-passed.png)
+
+Two-user ownership test (User A trying to delete User B's employee):
+
+![User A DELETE User B's employee returns 403 Forbidden](screenshots/38-ownership-user-a-delete-user-b-403.png)
+
+MongoDB: passwords stored as bcrypt hashes, and employees linked to their owner:
+
+![users collection with bcrypt password hashes](screenshots/51-mongodb-users-hashed-passwords.png)
+
+![employees filtered by owner: only that user's employees](screenshots/53-mongodb-user-employee-relationship.png)
+
+<details>
+<summary>All 58 screenshots</summary>
+
+- [00-collection-runner-183-tests-passed](screenshots/00-collection-runner-183-tests-passed.png)
+- [01-health-check](screenshots/01-health-check.png)
+- [02-helmet-security-headers](screenshots/02-helmet-security-headers.png)
+- [03-signup-user-a-201](screenshots/03-signup-user-a-201.png)
+- [04-signup-user-b-201](screenshots/04-signup-user-b-201.png)
+- [05-signup-duplicate-username-409](screenshots/05-signup-duplicate-username-409.png)
+- [06-signup-duplicate-email-409](screenshots/06-signup-duplicate-email-409.png)
+- [07-signup-invalid-email-400](screenshots/07-signup-invalid-email-400.png)
+- [08-signup-weak-password-400](screenshots/08-signup-weak-password-400.png)
+- [09-signup-missing-fields-400](screenshots/09-signup-missing-fields-400.png)
+- [10-signup-malformed-json-400](screenshots/10-signup-malformed-json-400.png)
+- [11-login-username-200-jwt](screenshots/11-login-username-200-jwt.png)
+- [12-login-email-200-jwt](screenshots/12-login-email-200-jwt.png)
+- [13-login-invalid-credentials-401](screenshots/13-login-invalid-credentials-401.png)
+- [14-login-missing-credentials-400](screenshots/14-login-missing-credentials-400.png)
+- [15-jwt-missing-401](screenshots/15-jwt-missing-401.png)
+- [16-jwt-malformed-header-401](screenshots/16-jwt-malformed-header-401.png)
+- [17-jwt-invalid-401](screenshots/17-jwt-invalid-401.png)
+- [18-jwt-expired-401](screenshots/18-jwt-expired-401.png)
+- [19-employee-create-201](screenshots/19-employee-create-201.png)
+- [20-employee-list-user-a-200](screenshots/20-employee-list-user-a-200.png)
+- [21-employee-get-by-id-200](screenshots/21-employee-get-by-id-200.png)
+- [22-employee-update-200](screenshots/22-employee-update-200.png)
+- [23-employee-missing-fields-400](screenshots/23-employee-missing-fields-400.png)
+- [24-employee-invalid-email-400](screenshots/24-employee-invalid-email-400.png)
+- [25-employee-invalid-salary-negative-400](screenshots/25-employee-invalid-salary-negative-400.png)
+- [26-employee-invalid-salary-text-400](screenshots/26-employee-invalid-salary-text-400.png)
+- [27-employee-invalid-date-400](screenshots/27-employee-invalid-date-400.png)
+- [28-employee-client-owner-rejected-400](screenshots/28-employee-client-owner-rejected-400.png)
+- [29-employee-create-missing-jwt-401](screenshots/29-employee-create-missing-jwt-401.png)
+- [30-employee-invalid-id-400](screenshots/30-employee-invalid-id-400.png)
+- [31-employee-not-found-404](screenshots/31-employee-not-found-404.png)
+- [32-employee-update-invalid-400](screenshots/32-employee-update-invalid-400.png)
+- [33-user-b-create-employee-201](screenshots/33-user-b-create-employee-201.png)
+- [34-user-b-sees-only-own-employees](screenshots/34-user-b-sees-only-own-employees.png)
+- [35-user-a-does-not-see-user-b-employee](screenshots/35-user-a-does-not-see-user-b-employee.png)
+- [36-ownership-user-a-get-user-b-403](screenshots/36-ownership-user-a-get-user-b-403.png)
+- [37-ownership-user-a-put-user-b-403](screenshots/37-ownership-user-a-put-user-b-403.png)
+- [38-ownership-user-a-delete-user-b-403](screenshots/38-ownership-user-a-delete-user-b-403.png)
+- [39-ownership-user-b-get-user-a-403](screenshots/39-ownership-user-b-get-user-a-403.png)
+- [40-ownership-user-b-put-user-a-403](screenshots/40-ownership-user-b-put-user-a-403.png)
+- [41-ownership-user-b-delete-user-a-403](screenshots/41-ownership-user-b-delete-user-a-403.png)
+- [42-ownership-user-b-employee-unchanged](screenshots/42-ownership-user-b-employee-unchanged.png)
+- [43-employee-delete-204](screenshots/43-employee-delete-204.png)
+- [44-employee-deleted-now-404](screenshots/44-employee-deleted-now-404.png)
+- [45-employee-delete-missing-eid-400](screenshots/45-employee-delete-missing-eid-400.png)
+- [46-unsupported-route-404](screenshots/46-unsupported-route-404.png)
+- [47-rate-limit-429](screenshots/47-rate-limit-429.png)
+- [48-rate-limit-headers](screenshots/48-rate-limit-headers.png)
+- [49-rate-limit-valid-login-blocked-429](screenshots/49-rate-limit-valid-login-blocked-429.png)
+- [50-mongodb-database-collections](screenshots/50-mongodb-database-collections.png)
+- [51-mongodb-users-hashed-passwords](screenshots/51-mongodb-users-hashed-passwords.png)
+- [52-mongodb-employees-owner-field](screenshots/52-mongodb-employees-owner-field.png)
+- [53-mongodb-user-employee-relationship](screenshots/53-mongodb-user-employee-relationship.png)
+- [54-mongodb-employees-indexes](screenshots/54-mongodb-employees-indexes.png)
+- [55-mongodb-users-unique-indexes](screenshots/55-mongodb-users-unique-indexes.png)
+- [56-local-log-file-events](screenshots/56-local-log-file-events.png)
+- [57-server-console-logs](screenshots/57-server-console-logs.png)
+
+</details>
 
 ---
 
